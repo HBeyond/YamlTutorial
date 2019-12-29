@@ -1,0 +1,62 @@
+%YAML:1.0
+---
+
+# IMU Parameters
+ImuParams:
+  sigmaBg: 0.001
+  sigmaBa: 0.05
+  sigmaG: 0.05
+  sigmaA: 0.5
+  f: 100
+
+# GPS Parameters
+GpsParams:
+  sigmaP: [2.0, 2.0, 4.0]
+  sigmaV: [2.0, 2.0, 4.0]
+  sigmaC: 1.0
+  f: 1
+
+# Camera Parameters
+CameraParams:
+  f: [1.102885481033972e+03, 1.103520623055449e+03]
+  c: [6.620275635286945e+02, 3.911259739288044e+02]
+  k: [-0.3608, 0.2001]
+  p: [7.0750e-04, 3.9261e-04]
+  Tcb: [1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, -1.0, 0.0,
+        0.0, 1.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 1.0]
+
+# Preprocess Configurations
+PreprocessConfig:
+  # Enable to check have repeated data
+  EnableRepeatedDataCheck: false
+
+  # Enable time region check, to ensure the first/last timestamp of IMU and GPS don't have much difference
+  EnableTimeRegionCheck: false
+
+  # Enable to check have enough lost data
+  EnableEnoughLostDataCheck: true
+
+  # Enable to process accumulated GPS data
+  EnableAccumulatedGpsDataProcess: true
+
+
+# EKF Configurations
+EkfConfig:
+  # Initial State
+  InitState:
+    rot: [0, 0, 0]
+    pos: [0, 0, 0]
+    vel: [0, 0, 0]
+    gyroBias: [0, 0, 0]
+    accBias: [0, 0, 0]
+
+  # Initial Variance
+  InitVar: [5, 5, 5, 40, 40, 200, 1000, 1000, 4000, 0.025, 0.025, 0.025, 0.25, 0.25, 0.25]
+
+  # Enable RTS Smooth
+  EnableSmooth: true
+
+  # Enable Station Check
+  EnableStationCheck: true
